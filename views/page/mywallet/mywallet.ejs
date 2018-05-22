@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <title>AWS Pay</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="/static/v2/img/favicon.png" rel="icon">
+
+    <!-- Bootstrap CSS File -->
+    <link href="/static/v2/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="/static/v2/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/v2/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/static/v2/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="/static/v2/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--==========================
+    Header
+    ============================-->
+    <header id="header" class="subheader">
+        <div class="container-fluid">
+            <!--div id="logo" class="pull-left text-hide">
+                <a href="/"> AWS Pay </a>
+            </div-->
+            <div><a href="/mywallet"><img src="/static/v2/img/logo.svg" class="pull-left" width="15%"></a></div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <% if (isMemberLogin) { %>
+                    <li><a href="/mywallet/">My Wallet</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/auth/login">Login</a></li>
+                    <li><a href="/membership/join">Signup</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+            <!-- #nav-menu-container -->
+        </div>
+    </header>
+    <!-- #header -->
+
+
+    <main id="main">
+        <div class="container subpage">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="subtit">내 지갑</h3>
+                </div>
+                <!-- #wallet -->
+                <section id="wallet">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="wallettit col-md-12">
+                                <h5> AWS Cryptocurrency (AWX)</h5>
+                                <h4 class="bonus">
+                                    <%= numeral(wallet.quantity).format('0,0') %> <small>AWX</small>
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="noti">
+                                    <i class="la la-volume-up"></i> 아마존 코인(AWS Cryptocurrency, AWX)은 거래소에서 충전 및 인출이 가능합니다.<br>
+                                </div>
+
+                                <div class="wallet-menu nav">
+                                    <a href="/mywallet/" class="col-4 active">시작하기</a>
+                                    <a href="/mywallet/history" class="col-4">내역</a>
+                                    <a href="/mywallet/withdraw" class="col-4">출금</a>
+                                </div>
+
+                            </div>
+                            <!--========================== 시작하기 ============================-->
+                            <div class="col-md-12 start">
+
+                                    <h2>시작하기</h2>
+                                    <div class="row mt-5 justify-content-md-center">
+                                        <div class="col-md-4">
+                                            <img src="/static/v2/img/ic_step_01.png" class="stepico">
+                                            <div class="stepbox">
+                                                거래소에서 <br/> 충전하기 <br/>
+                                            </div>
+                                            <div class="step-cnt">
+                                                <h6>지갑주소를 복사하여 거래소의 받는 주소에 입력하고 전송하세요.</h6>
+                                                <% if (terms.cnt > 0) { %>
+                                                <a class="btn btn-sm btn-block dark mb-4" data-toggle="modal" data-target="#accountDialog">지갑주소 확인하기</a>
+                                                <% } else { %>
+                                                <a class="btn btn-sm btn-block dark mb-4" onclick="alert('ICO 참여 이용약관에 동의해 주신 후 이용할 수 있습니다.');location.href ='/ico/join';">AWS 지갑주소</a>
+                                                <% } %>
+                                                <small>더 자세한 방법은 거래소 가이드를 참고하세요. </small>
+                                                <div class="link-group mt-2">
+                                                    <a href="http://thaitravel.xyz/176" target="_blank" class="btn btn-sm outline"> 업비트</a>
+                                                    <a href="http://bithumb.cafe/archives/3572" target="_blank" class="btn btn-sm outline"> 빗썸</a>
+                                                </div>
+                                                <div class="link-group mb-3">
+                                                    <a href="https://www.gopax.co.kr/gopax-user-guide.pdf" target="_blank" class="btn btn-sm outline"> 고팍스</a>
+                                                    <a href="https://coinone.co.kr/static/download/coinone_guide.pdf" target="_blank" class="btn btn-sm outline"> 코인원</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-auto step-arrow"> </div>
+
+                                        <div class="col-md-4">
+                                            <img src="/static/v2/img/ic_step_02.png" class="stepico">
+                                            <div class="stepbox">
+                                                <br/>충전 확인하기
+                                            </div>
+                                            <div class="step-cnt">
+                                                <h6>전송이 완료되면 URL이 이메일로 발송됩니다.</h6>
+                                                <p class="noti-error">입금이 확인되지 않을 경우</p>
+                                                <small class="">해당 거래소의 거래지연 문제이거나 해당 코인의 블록체인 네트워크 지연 문제일 수 있습니다. </small>
+                                                <hr class="danger">
+
+                                                <a class="btn btn-block btn-style2" href="/">완료</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+                        <!-- .row -->
+
+                    </div>
+                    <!-- .container -->
+                </section>
+                <!-- #wallet -->
+
+            </div>
+
+                </div>
+        <!-- #container -->
+    </main>
+
+
+    <!--==========================
+    Footer
+  ============================-->
+    <footer id="footer" class="subfooter">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                      <a href="#" data-toggle="modal" data-target="#privacy-policy">개인정보처리방침</a> &nbsp;
+                      <a href="#" data-toggle="modal" data-target="#terms">이용약관</a>
+                </div>
+                <div class="col-md-6">
+                     © 2018, Amazon Web Services, Inc. 또는 자회사. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- #footer -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="accountDialog" tabindex="-1" role="dialog">
+      <div class="modal-dialog popupsm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">이더리움 지갑주소</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-center">
+
+            <img src="/qrcode/<%= wallet.account %>" class="mt-5 mb-5">
+            <p id="accountAddress" class="txtbox mb-2"><%= wallet.account %></p>
+            <button type="button" class="btn btn-sm btn-block dark mb-4" data-dismiss="modal">주소 복사하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //Modal -->
+
+
+    <!-- <a href="#" class="back-to-top"><i class="la la-chevron-up"></i></a>-->
+
+    <!-- JavaScript Libraries -->
+    <script src="/static/v2/lib/jquery/jquery.min.js"></script>
+    <script src="/static/v2/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="/static/v2/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/v2/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/v2/lib/easing/easing.min.js"></script>
+    <script src="/static/v2/lib/superfish/hoverIntent.js"></script>
+    <script src="/static/v2/lib/superfish/superfish.min.js"></script>
+    <script src="/static/v2/lib/wow/wow.min.js"></script>
+    <script src="/static/v2/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/v2/lib/counterup/counterup.min.js"></script>
+    <script src="/static/v2/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/v2/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="/static/v2/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="/static/v2/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+    <script src="/static/v2/js/main.js"></script>
+    <script src="/static/vendors/jquery.number/jquery.number-2.1.3.min.js"></script>
+    <script src="/static/vendors/moment/moment-2.20.1.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/ajax.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#accountDialog').on('hide.bs.modal', function (e) {
+          setTimeout(function() {
+          copyToClipboard('accountAddress');
+          }, 100);
+        });
+      });
+    </script>
+</body>
+
+</html>
